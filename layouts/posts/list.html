@@ -1,0 +1,40 @@
+{{ define "main" }}
+<div class="posts-container">
+  <header class="posts-header">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}
+    <p>{{ . }}</p>
+    {{ end }}
+  </header>
+
+  {{ if .Pages }}
+  <div class="posts-list">
+    {{ range (.Pages.ByDate.Reverse) }}
+    <article class="post-item">
+      <div class="post-item-header">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+          {{ .Date.Format "January 2, 2006" }}
+        </time>
+      </div>
+      
+      {{ if .Summary }}
+      <p class="post-summary">{{ .Summary }}</p>
+      {{ end }}
+      
+      <div class="post-item-meta">
+        {{ with .Params.categories }}
+        <span class="post-categories">
+          {{ range . }}<a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a>{{ end }}
+        </span>
+        {{ end }}
+        <a href="{{ .RelPermalink }}" class="read-more">Read more →</a>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+  {{ else }}
+  <p>No posts yet. Check back soon!</p>
+  {{ end }}
+</div>
+{{ end }}

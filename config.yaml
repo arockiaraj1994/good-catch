@@ -1,0 +1,21 @@
+baseURL: "https://arockiaraj1994.github.io/good-catch/"
+languageCode: "en-us"
+title: "Good Catch"
+theme: ""
+
+# Content settings
+paginate: 10
+enableRobotsTXT: true
+
+# Output settings
+outputs:
+  home:
+    - HTML
+    - RSS
+
+# Menu configuration (optional, customize as needed)
+menus:
+  main:
+    - name: "Home"
+      url: "/"
+      weight: 1

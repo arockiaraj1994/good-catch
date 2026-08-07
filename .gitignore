@@ -1,0 +1,29 @@
+# Hugo default output directory
+/public/
+
+# Hugo build cache
+/resources/_gen/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependencies
+/node_modules/
+
+# Environment files
+.env
+.env.local
+
+# Hugo extended binary (if using extended version from source)
+/hugo
+.hugo_build.lock

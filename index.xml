@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Good Catch</title><link>https://arockiaraj1994.github.io/good-catch/</link><description>Recent content on Good Catch</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://arockiaraj1994.github.io/good-catch/index.xml" rel="self" type="application/rss+xml"/><item><title/><link>https://arockiaraj1994.github.io/good-catch/readme/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://arockiaraj1994.github.io/good-catch/readme/</guid><description>&lt;h1 id="content-directory"&gt;Content Directory&lt;/h1&gt;
+&lt;p&gt;This folder contains your content files (markdown posts, pages, etc.).&lt;/p&gt;
+&lt;p&gt;Example structure:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;posts/&lt;/code&gt; — Blog posts&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pages/&lt;/code&gt; — Static pages&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_index.md&lt;/code&gt; — Index/homepage content&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The custom homepage is defined in &lt;code&gt;layouts/index.html&lt;/code&gt; and doesn&amp;rsquo;t require a content file.&lt;/p&gt;</description></item></channel></rss>

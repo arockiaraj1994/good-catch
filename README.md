@@ -1,6 +1,6 @@
-# Good Catch
+# goodcatch.in
 
-A HUGO website with custom HTML homepage deployed to GitHub Pages.
+A terminal-themed single-page website documenting real-life AI failures and lessons. Built with HUGO and deployed to GitHub Pages.
 
 ## 🚀 Quick Start
 

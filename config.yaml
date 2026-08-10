@@ -23,7 +23,7 @@ params:
   giscus:
     repo: "arockiaraj1994/good-catch"
     repoID: "R_kgDOTw50cw"
-    category: "General"
+    category: "catches"
     categoryID: "DIC_kwDOTw50c84DC3x1"
     mapping: "pathname"
     reactions-enabled: "1"

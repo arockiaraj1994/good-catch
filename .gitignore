@@ -27,3 +27,10 @@ Thumbs.db
 # Hugo extended binary (if using extended version from source)
 /hugo
 .hugo_build.lock
+
+# Python (weekly pipeline checker)
+.venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/

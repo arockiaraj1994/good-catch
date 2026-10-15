@@ -1,8 +1,8 @@
 # goodcatch.in
 
-Real AI mistakes, one post each, decoded weekly. A Hacker News-style feed with a terminal look,
-built with Hugo and deployed to GitHub Pages. Readers discuss each post through Giscus
-(GitHub Discussions).
+Real AI mistakes, one post each, explained weekly in plain words for a general audience. A
+Hacker News-style feed with light and dark themes, built with Hugo and deployed to GitHub Pages.
+Readers discuss each post through Giscus (GitHub Discussions).
 
 ## Local development
 
@@ -11,29 +11,34 @@ hugo serve          # http://localhost:1313
 hugo --minify       # production build into public/
 ```
 
-No theme or submodule is needed: the site's own templates live in `layouts/` and its stylesheet in
-`static/css/site.css`.
+No theme or submodule is needed: the site's own templates live in `layouts/`, styles in
+`static/css/site.css` and the light/dark toggle in `static/js/theme.js`. Write for readers with no
+tech background: plain words, no jargon.
 
 ## Structure
 
 ```
 config.yaml                     site config, Giscus settings, menu
 layouts/
-  _default/baseof.html          terminal window shell (head, titlebar nav, footer)
-  _default/list.html            tag lists and tag pages
-  index.html                    home: hero + latest 30 catches
-  posts/list.html               all catches, paginated (30 per page)
-  posts/single.html             one catch: meta, body, sources, comments
-  weeks/list.html               all catches grouped by week (Monday start)
+  _default/baseof.html          page shell: head, header nav + theme toggle, footer
+  _default/list.html            topic (tag) index and topic pages
+  index.html                    home: intro + latest 30 mistakes
+  posts/list.html               all mistakes, paginated (30 per page)
+  posts/single.html             one mistake: meta, body, sources, discussion
+  weeks/list.html               all mistakes grouped by week (Monday start)
   partials/post-row.html        one feed row
-  partials/post-meta.html       date · AI system · severity · mistake type
+  partials/post-meta.html       date · AI system · mistake type · impact
   partials/comments.html        discussion provider switch point
-  partials/giscus.html          Giscus embed
+  partials/giscus.html          Giscus embed, opened in the current light/dark theme
+data/
+  labels.yaml                   plain-language names for mistake_type and severity
 content/
   posts/                        one Markdown file per mistake
   weeks/_index.md               weekly archive page
+  tags/_index.md                topics page title
 static/
-  css/site.css                  all styles
+  css/site.css                  all styles, light and dark palettes
+  js/theme.js                   theme toggle (remembers the choice, syncs Giscus)
   CNAME                         goodcatch.in
 ```
 
@@ -59,7 +64,8 @@ summary: "One-line hook shown under the title."
 ```
 
 Body sections, in order: `## What happened`, `## Why it went wrong`, `## Impact`, `## The lesson`.
-The Sources list is rendered from `sources`; don't repeat it in the body. The feed shows the domain
+The Sources list is rendered from `sources`; don't repeat it in the body. `mistake_type` and
+`severity` are shown using the readable names in `data/labels.yaml`. The feed shows the domain
 of the first source next to the title.
 
 ## Comments

@@ -3,34 +3,27 @@
     <h1>When AI gets it wrong, we catch it.</h1>
     <p>{{ site.Params.description }}</p>
 
-    <p class="buzz-chips" aria-label="AI buzzwords we cover">
-        {{- range hugo.Data.labels.mistake_type }}
-        {{- if ne .code "other" }}<a class="tag" href="{{ "buzzwords/" | relURL }}#{{ .code }}" title="{{ .simple }}">{{ .name }}</a>{{ end }}
-        {{- end }}
-    </p>
-
-    <div class="chat" aria-label="Example of an AI hallucination">
+    <div class="chat" aria-label="Example of an AI mistake">
         <div class="bubble user"><small>You</small>What's the capital of Australia?</div>
         <div class="bubble ai"><small>AI</small>Sydney, obviously. Population 5.3 million, founded 1788.</div>
         <div class="bubble user"><small>You</small>That's wrong. It's Canberra.</div>
         <div class="bubble ai-good"><small>AI</small>Good catch. You're right, it's Canberra.</div>
     </div>
-    <p class="chat-caption">That's an <a href="{{ "buzzwords/" | relURL }}#hallucination">AI hallucination</a>: the AI made something up and said it like a fact.</p>
 </section>
 
 <section class="section">
-    <h2 class="section-title">Latest AI fails</h2>
-    <p class="section-intro">Real cases, explained in simple words. Pick one and tell us what you think.</p>
+    <h2 class="section-title">Latest mistakes</h2>
+    <p class="section-intro">Real cases, explained in plain words. Pick one and tell us what you think.</p>
     {{- $posts := where site.RegularPages "Section" "posts" }}
     <ol class="feed">
         {{- range first 30 $posts.ByDate.Reverse }}
         {{ partial "post-row.html" . }}
         {{- else }}
-        <li class="empty">No AI fails posted yet. The first batch lands on Monday.</li>
+        <li class="empty">No mistakes posted yet. The first batch lands on Monday.</li>
         {{- end }}
     </ol>
     {{- if gt (len $posts) 30 }}
-    <p class="more"><a href="{{ "posts/" | relURL }}">See all AI fails →</a></p>
+    <p class="more"><a href="{{ "posts/" | relURL }}">See all mistakes →</a></p>
     {{- end }}
 </section>
 {{ end }}

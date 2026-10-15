@@ -1,0 +1,15 @@
+{{- /* One HN-style feed row. Context: a post page. */ -}}
+{{- $domain := "" }}
+{{- with index (.Params.sources | default slice) 0 }}
+  {{- $domain = (urls.Parse .url).Host | strings.TrimPrefix "www." }}
+{{- end }}
+<li class="feed-item">
+    <div>
+        <a class="feed-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{- with $domain }} <span class="feed-domain">({{ . }})</span>{{ end }}
+        <div class="meta">
+            {{- partial "post-meta.html" . -}}
+            <span class="sep"></span><a href="{{ .RelPermalink }}#comments">discuss</a>
+        </div>
+    </div>
+</li>

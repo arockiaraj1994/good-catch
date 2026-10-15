@@ -1,0 +1,5 @@
+{{- /* Meta line shared by feed rows and the post header. Context: a post page. */ -}}
+<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+{{- with .Params.ai_system }}<span class="sep"></span>{{ . }}{{ end }}
+{{- with .Params.severity }}<span class="sep"></span><span class="label sev-{{ . | urlize }}">{{ . }}</span>{{ end }}
+{{- with .Params.mistake_type }}<span class="sep"></span>{{ . }}{{ end }}

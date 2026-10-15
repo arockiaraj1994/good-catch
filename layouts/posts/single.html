@@ -1,45 +1,38 @@
 {{ define "main" }}
-<article class="post-single">
-  <header class="post-header">
-    <h1 class="post-title">
-      {{ .Title }}
-    </h1>
-    <div class="post-meta">
-      {{ if .Date }}
-      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-        {{ .Date.Format "January 2, 2006" }}
-      </time>
-      {{ end }}
-      {{ if .Params.author }}
-      <span class="post-author">by {{ .Params.author }}</span>
-      {{ end }}
-    </div>
-    {{ with .Params.tags }}
-    <div class="post-tags">
-      {{ range . }}
-      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}/" class="tag">#{{ . }}</a>
-      {{ end }}
-    </div>
-    {{ end }}
-  </header>
+<article>
+    <header class="pane">
+        <div class="command"><span class="prompt">user@you:~</span>cat catches/{{ .File.ContentBaseName }}.md</div>
+        <h1 class="post-title">{{ .Title }}</h1>
+        <div class="meta">
+            {{- partial "post-meta.html" . -}}
+            {{- with .Params.vendor }}<span class="sep"></span>vendor: {{ . }}{{ end }}
+            {{- with .Params.incident_date }}<span class="sep"></span>incident: {{ time.Format "2006-01-02" . }}{{ end }}
+        </div>
+        {{- with .Params.summary }}<p class="post-summary">{{ . }}</p>{{ end }}
+    </header>
 
-  <div class="post-content">
-    {{ .Content }}
-  </div>
+    <div class="pane post-body">
+        {{ .Content }}
 
-  {{ with .Params.categories }}
-  <footer class="post-footer">
-    <div class="post-categories">
-      <strong>Categories:</strong>
-      {{ range . }}
-      <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}/">{{ . }}</a>
-      {{ end }}
+        {{- with .Params.sources }}
+        <h2 id="sources">Sources</h2>
+        <ol class="sources">
+            {{- range . }}
+            <li><a href="{{ .url }}" rel="noopener nofollow" target="_blank">{{ .title }}</a></li>
+            {{- end }}
+        </ol>
+        {{- end }}
+
+        {{- with .GetTerms "tags" }}
+        <p class="meta tags">
+            {{- range . }}<a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>{{ end }}
+        </p>
+        {{- end }}
     </div>
-  </footer>
-  {{ end }}
 
-  <div class="post-comments">
-    {{ partial "giscus.html" . }}
-  </div>
+    <section class="pane" id="comments">
+        <div class="comments-heading"><span class="prompt">user@you:~</span>./discuss.sh</div>
+        {{ partial "comments.html" . }}
+    </section>
 </article>
 {{ end }}

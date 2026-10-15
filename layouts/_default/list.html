@@ -1,7 +1,7 @@
 {{ define "main" }}
 <h1 class="page-title">{{ .Title }}</h1>
 {{- if eq .Kind "taxonomy" }}
-<p class="section-intro">Browse mistakes by topic.</p>
+<p class="section-intro">Browse AI fails by topic: the companies, tools and themes involved.</p>
 <p class="tags">
     {{- range .Data.Terms.ByCount }}
     <a class="tag" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }} ({{ .Count }})</a>

@@ -15,6 +15,11 @@
     </script>
     {{- $desc := .Params.summary | default .Description | default site.Params.description }}
     <meta name="description" content="{{ $desc }}">
+    {{- $keywords := site.Params.keywords }}
+    {{- with .Params.mistake_type }}{{ with partial "buzzword.html" . }}{{ $keywords = $keywords | append .name }}{{ end }}{{ end }}
+    {{- range .Params.tags }}{{ $keywords = $keywords | append . }}{{ end }}
+    {{- with .Params.ai_system }}{{ $keywords = $keywords | append . }}{{ end }}
+    <meta name="keywords" content="{{ delimit (uniq $keywords) ", " }}">
     <meta name="color-scheme" content="light dark">
     <title>{{ if .IsHome }}{{ site.Title }} · {{ site.Params.tagline }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
     <link rel="canonical" href="{{ .Permalink }}">
@@ -51,7 +56,7 @@
     </main>
     <footer class="site-footer">
         <div class="container">
-            New mistakes every Monday · <a href="{{ "index.xml" | relURL }}">RSS feed</a>
+            New AI fails every Monday · <a href="{{ "buzzwords/" | relURL }}">AI buzzwords explained</a> · <a href="{{ "index.xml" | relURL }}">RSS feed</a>
         </div>
     </footer>
 </body>

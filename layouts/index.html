@@ -1,40 +1,14 @@
 {{ define "main" }}
-<section class="hero">
-    <h1>When AI gets it wrong, we catch it.</h1>
-    <p>{{ site.Params.description }}</p>
-
-    {{- $posts := where site.RegularPages "Section" "posts" }}
-    {{- /* Newest post that says what the AI claimed and what is true. No such post: no card. */ -}}
-    {{- with index (where (where $posts.ByDate.Reverse "Params.ai_said" "!=" nil) "Params.actually" "!=" nil) 0 }}
-    <article class="catch-card" aria-labelledby="catch-label">
-        <p class="catch-label" id="catch-label">This week's catch</p>
-        <dl>
-            <div class="catch-row said"><dt>The AI said</dt><dd>"{{ .Params.ai_said }}"</dd></div>
-            <div class="catch-row actually"><dt>Actually</dt><dd>{{ .Params.actually }}</dd></div>
-        </dl>
-        <div class="catch-foot">
-            <span class="meta">
-                {{- with .Params.ai_system }}{{ . }}{{ end }}
-                {{- with .Params.incident_date }}<span class="sep"></span>{{ time.Format "2 Jan 2006" . }}{{ end -}}
-            </span>
-            <a class="catch-link" href="{{ .RelPermalink }}">Read the story →</a>
-        </div>
-    </article>
+{{- $posts := where site.RegularPages "Section" "posts" }}
+<h1 class="visually-hidden">{{ site.Title }}: {{ site.Params.tagline }}</h1>
+<ol class="feed">
+    {{- range first 30 $posts.ByDate.Reverse }}
+    {{ partial "post-row.html" . }}
+    {{- else }}
+    <li class="empty">No mistakes posted yet. The first batch lands on Monday.</li>
     {{- end }}
-</section>
-
-<section class="section">
-    <h2 class="section-title">Latest mistakes</h2>
-    <p class="section-intro">Real cases, explained in plain words. Pick one and tell us what you think.</p>
-    <ol class="feed">
-        {{- range first 30 $posts.ByDate.Reverse }}
-        {{ partial "post-row.html" . }}
-        {{- else }}
-        <li class="empty">No mistakes posted yet. The first batch lands on Monday.</li>
-        {{- end }}
-    </ol>
-    {{- if gt (len $posts) 30 }}
-    <p class="more"><a href="{{ "posts/" | relURL }}">See all mistakes →</a></p>
-    {{- end }}
-</section>
+</ol>
+{{- if gt (len $posts) 30 }}
+<p class="more"><a href="{{ "posts/" | relURL }}">More →</a></p>
+{{- end }}
 {{ end }}

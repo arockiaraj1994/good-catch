@@ -13,8 +13,6 @@ sources:
   - title: "Press Gazette: AI in journalism, live tracker of scandals and mistakes"
     url: "https://pressgazette.co.uk/publishers/digital-journalism/ai-journalism-mistakes/"
 summary: "A reporter asked an AI tool what Pierre Poilievre had said. It gave back a summary written like a quote, and the paper printed it as his words."
-ai_said: "resign their seats tonight and run in a by-election tomorrow"
-actually: "Pierre Poilievre never said this. It was the AI's summary of his views, printed as a quote."
 ---
 
 ## What happened

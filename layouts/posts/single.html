@@ -7,6 +7,12 @@
             {{- with .Params.incident_date }}<span class="sep"></span>Happened {{ time.Format "2 Jan 2006" . }}{{ end }}
         </div>
         {{- with .Params.summary }}<p class="post-summary">{{ . }}</p>{{ end }}
+        {{- with .Params.mistake_type }}{{ with partial "buzzword.html" . }}
+        <aside class="explainer">
+            <strong>{{ .name }}, in simple words:</strong> {{ .simple }}
+            <a href="{{ "buzzwords/" | relURL }}#{{ .code }}">Learn more</a>
+        </aside>
+        {{- end }}{{ end }}
     </header>
 
     <div class="post-body">

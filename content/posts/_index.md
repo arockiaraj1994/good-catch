@@ -1,4 +1,4 @@
 ---
-title: "All mistakes"
-description: "Every AI mistake we've covered, newest first."
+title: "All AI fails"
+description: "Every AI fail we've covered, from hallucinations to rogue AI agents, newest first."
 ---

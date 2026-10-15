@@ -1,16 +1,18 @@
-{{ if .Site.Params.giscus }}
+{{ with site.Params.giscus }}
 <script src="https://giscus.app/client.js"
-        data-repo="{{ .Site.Params.giscus.repo }}"
-        data-repo-id="{{ .Site.Params.giscus.repoID }}"
-        data-category="{{ .Site.Params.giscus.category }}"
-        data-category-id="{{ .Site.Params.giscus.categoryID }}"
-        data-mapping="{{ .Site.Params.giscus.mapping }}"
-        data-reactions-enabled="{{ .Site.Params.giscus.reactions }}"
-        data-emit-metadata="{{ .Site.Params.giscus.emit }}"
-        data-input-position="{{ .Site.Params.giscus.inputPosition }}"
-        data-theme="{{ .Site.Params.giscus.theme }}"
-        data-lang="{{ .Site.Params.giscus.lang }}"
+        data-repo="{{ .repo }}"
+        data-repo-id="{{ .repoID }}"
+        data-category="{{ .category }}"
+        data-category-id="{{ .categoryID }}"
+        data-mapping="{{ .mapping }}"
+        data-reactions-enabled="{{ index . "reactions-enabled" }}"
+        data-emit-metadata="{{ index . "emit-metadata" }}"
+        data-input-position="{{ index . "input-position" }}"
+        data-theme="{{ .theme }}"
+        data-lang="{{ .lang }}"
+        data-loading="lazy"
         crossorigin="anonymous"
         async>
 </script>
+<noscript><p class="meta">Comments need JavaScript and a GitHub account.</p></noscript>
 {{ end }}

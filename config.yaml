@@ -1,25 +1,25 @@
 baseURL: "https://goodcatch.in/"
-languageCode: "en-us"
+locale: "en-US"
 title: "Good Catch"
-theme: "PaperMod"
 
 # Content settings
-paginate: 10
+pagination:
+  pagerSize: 30
 enableRobotsTXT: true
+titleCaseStyle: none
 
-# Output settings
 outputs:
   home:
     - HTML
     - RSS
 
-# Taxonomies
 taxonomies:
-  category: categories
   tag: tags
 
-# Giscus Comments Configuration
 params:
+  description: "Real AI mistakes, one post each, decoded weekly. Discuss what went wrong."
+
+  # Giscus comments (GitHub Discussions). Rendered by layouts/partials/giscus.html.
   giscus:
     repo: "arockiaraj1994/good-catch"
     repoID: "R_kgDOTw50cw"
@@ -32,12 +32,14 @@ params:
     theme: "dark"
     lang: "en"
 
-# Menu configuration (optional, customize as needed)
 menus:
   main:
-    - name: "Home"
-      url: "/"
-      weight: 1
-    - name: "Posts"
+    - name: "catches"
       url: "/posts/"
+      weight: 1
+    - name: "weeks"
+      url: "/weeks/"
       weight: 2
+    - name: "tags"
+      url: "/tags/"
+      weight: 3

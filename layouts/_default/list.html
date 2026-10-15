@@ -1,24 +1,22 @@
 {{ define "main" }}
-<div class="list-container">
-  {{ if .Title }}
-  <header class="list-header">
-    <h1>{{ .Title }}</h1>
-  </header>
-  {{ end }}
-
-  {{ if .Pages }}
-  <div class="list">
-    {{ range (.Pages.ByDate.Reverse) }}
-    <article class="list-item">
-      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-      {{ if .Date }}
-      <time>{{ .Date.Format "January 2, 2006" }}</time>
-      {{ end }}
-    </article>
-    {{ end }}
-  </div>
-  {{ else }}
-  <p>No content found.</p>
-  {{ end }}
-</div>
+<section class="pane">
+    <div class="command"><span class="prompt">user@you:~</span>ls {{ .Title | urlize }}/</div>
+    {{- if eq .Kind "taxonomy" }}
+    <ul class="feed">
+        {{- range .Data.Terms.ByCount }}
+        <li class="feed-item"><div><a class="feed-title" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }}</a> <span class="feed-domain">({{ .Count }})</span></div></li>
+        {{- end }}
+    </ul>
+    {{- else }}
+    {{- with .Pages.ByDate.Reverse }}
+    <ol class="feed">
+        {{- range . }}
+        {{ partial "post-row.html" . }}
+        {{- end }}
+    </ol>
+    {{- else }}
+    <p class="empty">Nothing here yet.</p>
+    {{- end }}
+    {{- end }}
+</section>
 {{ end }}

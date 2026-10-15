@@ -27,18 +27,18 @@ That is false. The first image of an exoplanet, 2M1207 b, was taken in 2004 by t
 
 ## Why it went wrong
 
-- **Confident hallucination**: the model produced a plausible-sounding "first" with nothing to back it, in the same authoritative tone as its correct claims.
-- **Superlatives are a trap**: "first", "only" and "largest" claims are exactly where training data is thin or contradictory, and where models most often overreach.
-- **No grounding**: the answer was not checked against a source before it went into a launch asset.
+- **It made something up, confidently.** The AI produced a believable-sounding "first" with nothing to back it, in the same sure tone it used for its correct answers.
+- **"First" and "biggest" claims are a trap.** These are exactly the facts AI tools most often get wrong, because what they learned from is thin or contradictory.
+- **Nobody checked.** The answer was never compared with a trusted source before it went into a launch ad.
 
 ## Impact
 
 - The error appeared in Google's official launch material and was widely reported.
 - Alphabet shares fell sharply the next day, a drop widely tied in coverage to the demo error.
-- It became the go-to example of LLM hallucination in early 2023 coverage.
+- It became the go-to example of AI chatbots making things up.
 
 ## The lesson
 
-1. **Fact-check every specific claim**, especially superlatives and dates, before AI output reaches users.
-2. **A confident tone is not evidence.** Models sound equally sure when they are right and when they are wrong.
-3. **Demos are production.** Anything shown publicly needs the same review as anything shipped.
+1. **Double-check specific facts**, especially "firsts", records and dates, before you repeat what an AI told you.
+2. **Sounding sure is not the same as being right.** AI tools sound just as confident when they are wrong.
+3. **Big moments need extra checks.** If even Google's launch ad slipped through, a quick check is worth it for anything you share publicly.

@@ -38,7 +38,7 @@ content/
   weeks/_index.md               weekly archive page
   tags/_index.md                topics page title
 scripts/
-  weekly.sh                     weekly pipeline: write, check, PR, merge, record
+  weekly.sh                     weekly pipeline: write + PR, then --merge to publish
   weekly-prompt.md              instructions for the writer session
 src/pipeline/                   post checker used by the pipeline (Python)
 tests/                          checker tests
@@ -76,26 +76,26 @@ of the first source next to the title.
 
 ## Weekly pipeline
 
-`scripts/weekly.sh` publishes new posts once a week. It starts a fresh headless Claude session
-(`claude -p`, prompt in `scripts/weekly-prompt.md`) that finds AI mistakes reported since the last
-run and writes up to 5 posts. Then it:
+New posts are added once a week, and **nothing runs or goes live without the owner's approval**.
+Every Monday morning a Claude scheduled task sends a notification asking to start the week.
 
-1. checks them with `uv run python -m pipeline check` (format, plain words, sources load, no
-   repeats, only new post files changed) and `hugo --panicOnWarning`;
-2. pushes branch `weekly/YYYY-Www` and opens a PR;
-3. merges it once the PR build passes, waits for the deploy and confirms each post is live;
-4. writes the Redmine wiki page `Week YYYY-Www`.
-
-If a check fails, the PR stays open and unmerged and a note goes on Redmine #583.
+1. **Write** (after the first approval): `scripts/weekly.sh` starts a fresh headless Claude session
+   (`claude -p`, prompt in `scripts/weekly-prompt.md`) that finds AI mistakes reported since the
+   last published week and writes up to 5 posts. They are checked with
+   `uv run python -m pipeline check` (format, plain words, sources load, no repeats, only new post
+   files changed) and `hugo --panicOnWarning`, then pushed as branch `weekly/YYYY-Www` with a PR
+   for review. If a check fails, the PR says so and a note goes on Redmine #583.
+2. **Publish** (after the owner reviews the PR): `scripts/weekly.sh --merge` merges it once the
+   PR build passes, waits for the deploy, confirms each post is live and writes the Redmine wiki
+   page `Week YYYY-Www`.
 
 ```bash
-scripts/weekly.sh --no-merge      # dry run: open the PR, don't merge
-scripts/weekly.sh --force         # run again this week
+scripts/weekly.sh                 # write this week's posts and open the PR
+scripts/weekly.sh --merge         # publish this week's reviewed PR
+scripts/weekly.sh --force         # write again even if this week was already published
 ```
 
-Run it from cron every hour (`30 * * * * ~/projects/good-catch/scripts/weekly.sh`). It only does
-work once per week, on or after Monday 08:30 IST, so a Monday missed while the machine was off is
-caught up later that week. State and logs: `~/.local/state/good-catch/`.
+State and logs: `~/.local/state/good-catch/`.
 
 The checker lives in `src/pipeline/` (Python, managed with `uv`). Its gate:
 `bash gates/scripts/verify-python.sh`.

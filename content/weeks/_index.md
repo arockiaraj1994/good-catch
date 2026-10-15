@@ -1,4 +1,4 @@
 ---
-title: "Weeks"
-description: "Every catch, grouped by the week it was posted."
+title: "Mistakes by week"
+description: "A new batch every Monday. Here they are, week by week."
 ---

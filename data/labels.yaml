@@ -1,0 +1,14 @@
+# Plain-language labels for front matter values, so readers never see internal codes.
+mistake_type:
+  hallucination: "Made things up"
+  bias: "Unfair or biased"
+  safety: "Unsafe advice"
+  security: "Security slip"
+  agent-action: "Did the wrong thing"
+  other: "Other"
+
+severity:
+  low: "Low impact"
+  medium: "Medium impact"
+  high: "High impact"
+  critical: "Critical"

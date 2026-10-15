@@ -17,9 +17,8 @@ taxonomies:
   tag: tags
 
 params:
-  tagline: "AI fails, hallucinations and deepfakes, explained simply"
-  description: "AI hallucinations, rogue AI agents, deepfakes: every week we pick real AI fails from ChatGPT, Gemini, Copilot and more, explain them in simple words, and open them up for discussion. No tech background needed."
-  keywords: ["AI fails", "AI mistakes", "AI hallucination", "AI agent", "deepfake", "prompt injection", "AI bias", "ChatGPT", "generative AI"]
+  tagline: "Real AI mistakes, explained"
+  description: "Every week we pick real mistakes made by AI tools, explain what went wrong in plain words, and open them up for discussion. No tech background needed."
 
   # Giscus comments (GitHub Discussions). Rendered by layouts/partials/giscus.html;
   # its light/dark theme follows the site toggle.
@@ -36,15 +35,12 @@ params:
 
 menus:
   main:
-    - name: "All AI fails"
+    - name: "All mistakes"
       url: "/posts/"
       weight: 1
     - name: "By week"
       url: "/weeks/"
       weight: 2
-    - name: "AI buzzwords"
-      url: "/buzzwords/"
-      weight: 3
     - name: "Topics"
       url: "/tags/"
-      weight: 4
+      weight: 3

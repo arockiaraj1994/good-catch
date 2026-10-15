@@ -6,7 +6,7 @@
     {{- range $pager.Pages }}
     {{ partial "post-row.html" . }}
     {{- else }}
-    <li class="empty">No AI fails posted yet.</li>
+    <li class="empty">No mistakes posted yet.</li>
     {{- end }}
 </ol>
 {{- if gt $pager.TotalPages 1 }}

@@ -1,3 +1,0 @@
-{{- /* Returns the buzzword entry for a mistake_type code (or nil). Context: the code string. */ -}}
-{{- $entry := index (where hugo.Data.labels.mistake_type "code" .) 0 }}
-{{- return $entry }}

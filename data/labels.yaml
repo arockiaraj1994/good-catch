@@ -1,39 +1,11 @@
-# How front matter codes are shown to readers.
-# mistake_type: the popular buzzword (what people search for) plus a simple explanation.
-# Order here is the order on the buzzwords page.
+# Plain-language labels for front matter values, so readers never see internal codes.
 mistake_type:
-  - code: hallucination
-    name: "AI Hallucination"
-    simple: "The AI made something up and said it like a fact."
-    more: "Chatbots like ChatGPT and Gemini are built on large language models (LLMs). They predict words that sound right, not words that are checked. When there is a gap, they can fill it with a confident, made-up answer: fake quotes, fake court cases, wrong dates."
-  - code: agent-action
-    name: "AI Agent Fail"
-    simple: "An AI that can act on its own did the wrong thing."
-    more: "An AI agent does not just chat. It can click, send, buy, delete or change things for you. That saves time, but one wrong step happens for real, often before anyone notices."
-  - code: deepfake
-    name: "Deepfake"
-    simple: "A fake photo, video or voice made with AI."
-    more: "Generative AI can copy a real person's face or voice in minutes. Deepfakes are used for scams, fake news and harassment, and they are getting hard to spot by eye."
-  - code: bias
-    name: "AI Bias"
-    simple: "The AI treated some people unfairly."
-    more: "AI learns from past data. If that data is unfair to some groups, the AI repeats the unfairness, for example in hiring, loans or face recognition."
-  - code: privacy
-    name: "AI Privacy Leak"
-    simple: "The AI exposed information that should have stayed private."
-    more: "What you type into an AI tool can be stored, used for training or shown to someone else by mistake. Leaks happen through bugs, careless sharing and tricks that make the AI repeat what it saw."
-  - code: security
-    name: "Prompt Injection"
-    simple: "Someone tricked the AI into breaking its own rules."
-    more: "Prompt injection hides instructions in text the AI reads, like a web page or email. The AI follows them as if you had asked. It is the top security risk for AI chatbots and agents."
-  - code: safety
-    name: "AI Safety Fail"
-    simple: "The AI gave advice that could hurt someone."
-    more: "AI tools are meant to refuse or warn when a question is risky, such as health, money or dangerous activities. A safety fail is when that guardrail does not hold."
-  - code: other
-    name: "AI Fail"
-    simple: "An AI tool got something wrong."
-    more: "Mistakes that do not fit the other buzzwords."
+  hallucination: "Made things up"
+  bias: "Unfair or biased"
+  safety: "Unsafe advice"
+  security: "Security slip"
+  agent-action: "Did the wrong thing"
+  other: "Other"
 
 severity:
   low: "Low impact"

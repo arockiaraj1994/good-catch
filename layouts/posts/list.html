@@ -1,22 +1,18 @@
 {{ define "main" }}
-<section class="pane">
-    <div class="command"><span class="prompt">user@you:~</span>ls -t catches/</div>
-    {{- with .Description }}<div class="comment">{{ . }}</div>{{ end }}
-    {{- $pager := .Paginate .Pages.ByDate.Reverse }}
-    {{- with $pager.Pages }}
-    <ol class="feed" style="--feed-start: {{ mul (sub $pager.PageNumber 1) $pager.PagerSize }}">
-        {{- range . }}
-        {{ partial "post-row.html" . }}
-        {{- end }}
-    </ol>
+<h1 class="page-title">{{ .Title }}</h1>
+{{- with .Description }}<p class="section-intro">{{ . }}</p>{{ end }}
+{{- $pager := .Paginate .Pages.ByDate.Reverse }}
+<ol class="feed" style="--feed-start: {{ mul (sub $pager.PageNumber 1) $pager.PagerSize }}">
+    {{- range $pager.Pages }}
+    {{ partial "post-row.html" . }}
     {{- else }}
-    <p class="empty">No catches yet.</p>
+    <li class="empty">No mistakes posted yet.</li>
     {{- end }}
-    {{- if gt $pager.TotalPages 1 }}
-    <nav class="pager">
-        {{- with $pager.Prev }}<a href="{{ .URL }}">← newer</a>{{ else }}<span></span>{{ end }}
-        {{- with $pager.Next }}<a href="{{ .URL }}">older →</a>{{ end }}
-    </nav>
-    {{- end }}
-</section>
+</ol>
+{{- if gt $pager.TotalPages 1 }}
+<nav class="pager" aria-label="Pages">
+    {{- with $pager.Prev }}<a href="{{ .URL }}">← Newer</a>{{ else }}<span></span>{{ end }}
+    {{- with $pager.Next }}<a href="{{ .URL }}">Older →</a>{{ end }}
+</nav>
+{{- end }}
 {{ end }}

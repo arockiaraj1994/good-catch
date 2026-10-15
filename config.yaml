@@ -17,9 +17,11 @@ taxonomies:
   tag: tags
 
 params:
-  description: "Real AI mistakes, one post each, decoded weekly. Discuss what went wrong."
+  tagline: "Real AI mistakes, explained"
+  description: "Every week we pick real mistakes made by AI tools, explain what went wrong in plain words, and open them up for discussion. No tech background needed."
 
-  # Giscus comments (GitHub Discussions). Rendered by layouts/partials/giscus.html.
+  # Giscus comments (GitHub Discussions). Rendered by layouts/partials/giscus.html;
+  # its light/dark theme follows the site toggle.
   giscus:
     repo: "arockiaraj1994/good-catch"
     repoID: "R_kgDOTw50cw"
@@ -29,17 +31,16 @@ params:
     reactions-enabled: "1"
     emit-metadata: "0"
     input-position: "bottom"
-    theme: "dark"
     lang: "en"
 
 menus:
   main:
-    - name: "catches"
+    - name: "All mistakes"
       url: "/posts/"
       weight: 1
-    - name: "weeks"
+    - name: "By week"
       url: "/weeks/"
       weight: 2
-    - name: "tags"
+    - name: "Topics"
       url: "/tags/"
       weight: 3

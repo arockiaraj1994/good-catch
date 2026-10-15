@@ -1,23 +1,21 @@
 {{ define "main" }}
-<section class="pane">
-    <div class="command"><span class="prompt">user@you:~</span>ls -t catches/ | group-by-week</div>
-    {{- with .Description }}<div class="comment">{{ . }}</div>{{ end }}
-    {{- $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse }}
-    {{- $lastWeek := "" }}
-    {{- $open := false }}
-    {{- range $posts }}
-        {{- /* Week starts on Monday: step back (weekday + 6) mod 7 days. */ -}}
-        {{- $back := mod (add (int .Date.Weekday) 6) 7 }}
-        {{- $week := (.Date.AddDate 0 0 (sub 0 $back)).Format "2006-01-02" }}
-        {{- if ne $week $lastWeek }}
-            {{- if $open }}</ol>{{ end }}
-    <h2 class="week-heading" id="week-{{ $week }}">week of {{ $week }}</h2>
-    <ol class="feed">
-            {{- $lastWeek = $week }}
-            {{- $open = true }}
-        {{- end }}
-        {{ partial "post-row.html" . }}
+<h1 class="page-title">{{ .Title }}</h1>
+{{- with .Description }}<p class="section-intro">{{ . }}</p>{{ end }}
+{{- $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse }}
+{{- $lastWeek := "" }}
+{{- $open := false }}
+{{- range $posts }}
+    {{- /* Week starts on Monday: step back (weekday + 6) mod 7 days. */ -}}
+    {{- $monday := .Date.AddDate 0 0 (sub 0 (mod (add (int .Date.Weekday) 6) 7)) }}
+    {{- $week := $monday.Format "2006-01-02" }}
+    {{- if ne $week $lastWeek }}
+        {{- if $open }}</ol>{{ end }}
+<h2 class="week-heading" id="week-{{ $week }}">Week of {{ $monday.Format "2 January 2006" }}</h2>
+<ol class="feed">
+        {{- $lastWeek = $week }}
+        {{- $open = true }}
     {{- end }}
-    {{- if $open }}</ol>{{ else }}<p class="empty">No catches yet.</p>{{ end }}
-</section>
+    {{ partial "post-row.html" . }}
+{{- end }}
+{{- if $open }}</ol>{{ else }}<p class="empty">No mistakes posted yet.</p>{{ end }}
 {{ end }}

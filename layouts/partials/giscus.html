@@ -1,18 +1,29 @@
-{{ with site.Params.giscus }}
-<script src="https://giscus.app/client.js"
-        data-repo="{{ .repo }}"
-        data-repo-id="{{ .repoID }}"
-        data-category="{{ .category }}"
-        data-category-id="{{ .categoryID }}"
-        data-mapping="{{ .mapping }}"
-        data-reactions-enabled="{{ index . "reactions-enabled" }}"
-        data-emit-metadata="{{ index . "emit-metadata" }}"
-        data-input-position="{{ index . "input-position" }}"
-        data-theme="{{ .theme }}"
-        data-lang="{{ .lang }}"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
+{{- with site.Params.giscus }}
+{{- /* Built in JS so the widget opens in the page's current light/dark theme. */ -}}
+{{- $attrs := dict
+    "data-repo" .repo
+    "data-repo-id" .repoID
+    "data-category" .category
+    "data-category-id" .categoryID
+    "data-mapping" .mapping
+    "data-reactions-enabled" (index . "reactions-enabled")
+    "data-emit-metadata" (index . "emit-metadata")
+    "data-input-position" (index . "input-position")
+    "data-lang" .lang
+    "data-loading" "lazy"
+}}
+<div class="giscus"></div>
+<script>
+    (function () {
+        var attrs = {{ $attrs | jsonify | safeJS }};
+        var s = document.createElement('script');
+        s.src = 'https://giscus.app/client.js';
+        s.async = true;
+        s.crossOrigin = 'anonymous';
+        Object.keys(attrs).forEach(function (k) { s.setAttribute(k, attrs[k]); });
+        s.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+        document.currentScript.parentNode.appendChild(s);
+    })();
 </script>
-<noscript><p class="meta">Comments need JavaScript and a GitHub account.</p></noscript>
-{{ end }}
+<noscript><p class="section-intro">Comments need JavaScript turned on.</p></noscript>
+{{- end }}

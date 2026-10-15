@@ -2,10 +2,10 @@
 mistake_type:
   hallucination: "Made things up"
   bias: "Unfair or biased"
-  safety: "Unsafe advice"
+  safety: "Put people at risk"
   security: "Security slip"
   agent-action: "Did the wrong thing"
-  other: "Other"
+  other: "Got it wrong"
 
 severity:
   low: "Low impact"

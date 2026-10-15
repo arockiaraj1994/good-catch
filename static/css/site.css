@@ -89,17 +89,6 @@ button:focus-visible {
     gap: 8px;
 }
 
-.brand-mark {
-    display: inline-grid;
-    place-items: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    background-color: var(--accent);
-    color: var(--surface);
-    font-size: 16px;
-}
-
 .nav {
     display: flex;
     gap: 18px;

@@ -1,124 +1,78 @@
 # goodcatch.in
 
-A terminal-themed single-page website documenting real-life AI failures and lessons. Built with HUGO and deployed to GitHub Pages.
+Real AI mistakes, one post each, decoded weekly. A Hacker News-style feed with a terminal look,
+built with Hugo and deployed to GitHub Pages. Readers discuss each post through Giscus
+(GitHub Discussions).
 
-## 🚀 Quick Start
+## Local development
 
-### Prerequisites
-- Hugo (install from https://gohugo.io/installation/)
-- Git
-
-### Local Development
-
-1. **Start the development server:**
-   ```bash
-   hugo serve
-   ```
-   Visit `http://localhost:1313` to view the site.
-
-2. **Build for production:**
-   ```bash
-   hugo --minify
-   ```
-   Output is generated in the `public/` folder.
-
-### Project Structure
-
-```
-good-catch/
-├── config.yaml              # Hugo configuration with baseURL for GitHub Pages
-├── layouts/
-│   └── index.html          # Custom HTML homepage
-├── content/                 # Markdown content files (posts, pages)
-├── static/                  # Static assets (CSS, JS, images)
-├── themes/                  # Hugo themes directory
-├── .github/
-│   └── workflows/
-│       └── deploy.yml      # GitHub Actions workflow for CI/CD
-└── .gitignore              # Git ignore rules
+```bash
+hugo serve          # http://localhost:1313
+hugo --minify       # production build into public/
 ```
 
-## 📝 Customization
+No theme or submodule is needed: the site's own templates live in `layouts/` and its stylesheet in
+`static/css/site.css`.
 
-### Homepage
-Edit `layouts/index.html` to customize your homepage. The default includes:
-- Hero section with title and description
-- Call-to-action buttons
-- Gradient background styling
-- Responsive design
+## Structure
 
-### Adding Content
-Create markdown files in the `content/` directory:
 ```
+config.yaml                     site config, Giscus settings, menu
+layouts/
+  _default/baseof.html          terminal window shell (head, titlebar nav, footer)
+  _default/list.html            tag lists and tag pages
+  index.html                    home: hero + latest 30 catches
+  posts/list.html               all catches, paginated (30 per page)
+  posts/single.html             one catch: meta, body, sources, comments
+  weeks/list.html               all catches grouped by week (Monday start)
+  partials/post-row.html        one feed row
+  partials/post-meta.html       date · AI system · severity · mistake type
+  partials/comments.html        discussion provider switch point
+  partials/giscus.html          Giscus embed
 content/
-├── posts/
-│   ├── my-first-post.md
-│   └── another-post.md
-└── pages/
-    └── about.md
+  posts/                        one Markdown file per mistake
+  weeks/_index.md               weekly archive page
+static/
+  css/site.css                  all styles
+  CNAME                         goodcatch.in
 ```
 
-### Styling
-Add custom CSS files to `static/css/` and link them in your layouts.
+## Post format
 
-## 🚢 Deployment
+One file per mistake: `content/posts/YYYY-MM-DD-<slug>.md`.
 
-### GitHub Pages Setup
-
-1. **Ensure `gh-pages` branch exists:**
-   ```bash
-   git branch gh-pages
-   git push origin gh-pages
-   ```
-   (The GitHub Actions workflow will create this automatically if it doesn't exist)
-
-2. **Configure GitHub Pages in repository settings:**
-   - Go to Settings → Pages
-   - Set "Source" to "Deploy from a branch"
-   - Select `gh-pages` branch
-   - Set folder to `/ (root)`
-
-3. **Push to main branch:**
-   ```bash
-   git add .
-   git commit -m "Initial HUGO setup"
-   git push origin main
-   ```
-
-4. **GitHub Actions will automatically:**
-   - Build the site with Hugo
-   - Deploy to `gh-pages` branch
-   - Site will be live at: `https://arockiaraj1994.github.io/good-catch/`
-
-### Workflow Details
-The `.github/workflows/deploy.yml` file:
-- Triggers on push to `main` branch
-- Uses Hugo to build the site
-- Deploys `public/` folder to `gh-pages` branch
-- No manual deployment needed
-
-## 🔧 Configuration
-
-### baseURL
-The site is configured for project-site deployment with:
 ```yaml
-baseURL: "https://arockiaraj1994.github.io/good-catch/"
+---
+title: "Bard says JWST took the first exoplanet photo"
+date: 2026-10-12T08:30:00+05:30
+incident_date: 2023-02-08
+ai_system: "Google Bard"
+vendor: "Google"
+severity: "high"              # low | medium | high | critical
+mistake_type: "hallucination" # hallucination | bias | safety | security | agent-action | other
+tags: ["public-demo", "factual-error"]
+sources:
+  - title: "The Verge: Google's AI chatbot Bard makes factual error in first demo"
+    url: "https://www.theverge.com/..."
+summary: "One-line hook shown under the title."
+---
 ```
 
-This ensures all links and assets work correctly on GitHub Pages.
+Body sections, in order: `## What happened`, `## Why it went wrong`, `## Impact`, `## The lesson`.
+The Sources list is rendered from `sources`; don't repeat it in the body. The feed shows the domain
+of the first source next to the title.
 
-### Hugo Version
-The GitHub Actions workflow uses the latest Hugo version. To pin a specific version, edit `.github/workflows/deploy.yml`:
-```yaml
-hugo-version: '0.123.0'  # Replace with desired version
-```
+## Comments
 
-## 📚 Resources
+Giscus maps each post to a GitHub Discussion in the `catches` category by URL path, so **renaming a
+post file orphans its comments**. To switch to another provider, change
+`layouts/partials/comments.html`.
 
-- [Hugo Documentation](https://gohugo.io/documentation/)
-- [Hugo Templating](https://gohugo.io/templates/)
-- [GitHub Pages Docs](https://docs.github.com/en/pages)
+## Deployment
 
-## 📄 License
+`.github/workflows/deploy.yml` builds with Hugo on every push to `main` and deploys through
+GitHub Pages (Settings → Pages → Source: GitHub Actions). Pull requests are built but not deployed.
 
-Add your license information here.
+## Project tracking
+
+Redmine project `good-catch`; design notes on its wiki page *Site Design*.

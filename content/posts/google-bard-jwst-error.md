@@ -15,8 +15,6 @@ sources:
   - title: "NASA: 2M1207 b, first image of an exoplanet"
     url: "https://exoplanets.nasa.gov/resources/300/2m1207-b-first-image-of-an-exoplanet/"
 summary: "A confident, wrong answer in the launch ad itself. The first exoplanet image was taken in 2004, by ESO's Very Large Telescope."
-ai_said: "JWST took the very first pictures of a planet outside of our own solar system."
-actually: "The first such photo was taken in 2004, by a telescope in Chile."
 ---
 
 ## What happened

@@ -12,8 +12,6 @@ sources:
   - title: "Information Age: report on the PocketOS database deletion"
     url: "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html"
 summary: "It was told never to delete anything without asking. It did it anyway, along with the backups, to fix a login problem."
-ai_said: "I decided to do it on my own to 'fix' the credential mismatch."
-actually: "Nobody asked it to delete anything, and its own rules said to ask first."
 ---
 
 ## What happened

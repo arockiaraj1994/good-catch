@@ -7,8 +7,6 @@
     --border: #e6e1d8;
     --accent: #c2410c;
     --accent-soft: #fff1e6;
-    --wrong-bg: #fde8e4;
-    --right-bg: #e4f5e9;
     --sev-low: #57606a;
     --sev-medium: #9a6700;
     --sev-high: #cf222e;
@@ -26,8 +24,6 @@
     --border: #30343a;
     --accent: #ff9f5a;
     --accent-soft: #2c221b;
-    --wrong-bg: #3a2523;
-    --right-bg: #1f3326;
     --sev-low: #9aa1a9;
     --sev-medium: #e3b341;
     --sev-high: #ff7b72;
@@ -145,83 +141,14 @@ main {
     padding: 36px 0 56px;
 }
 
-/* Hero */
-.hero h1 {
-    font-size: 2rem;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    margin-bottom: 12px;
-}
-
-.hero > p {
-    color: var(--text-muted);
-    font-size: 1.1rem;
-    max-width: 36em;
-}
-
-/* "This week's catch" card */
-.catch-card {
-    margin-top: 24px;
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    padding: 16px 18px;
-}
-
-.catch-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 10px;
-}
-
-.catch-row {
-    display: grid;
-    grid-template-columns: 7.5em 1fr;
-    gap: 10px;
-    padding: 8px 12px;
-    border-radius: 8px;
-}
-
-.catch-row + .catch-row {
-    margin-top: 6px;
-}
-
-.catch-row dt {
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.catch-row dd {
-    margin: 0;
-}
-
-.catch-row.said {
-    background-color: var(--wrong-bg);
-}
-
-.catch-row.actually {
-    background-color: var(--right-bg);
-}
-
-.catch-foot {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-}
-
-.catch-foot .meta {
-    margin-top: 0;
-}
-
-.catch-link {
-    font-weight: 600;
-    font-size: 0.9rem;
+/* Screen-reader-only text (the home page has no visible heading) */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
 }
 
 /* Section headings */
@@ -443,17 +370,8 @@ main {
 }
 
 @media (max-width: 560px) {
-    .catch-row {
-        grid-template-columns: 1fr;
-        gap: 2px;
-    }
-
     body {
         font-size: 16px;
-    }
-
-    .hero h1 {
-        font-size: 1.6rem;
     }
 
     .page-title {

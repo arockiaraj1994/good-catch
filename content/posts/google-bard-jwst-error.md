@@ -1,54 +1,44 @@
 ---
-title: "Google's Bard Misstates James Webb Space Telescope Discovery"
+title: "Bard says JWST took the first exoplanet photo, in Google's own launch demo"
 date: 2023-02-09T14:00:00Z
-author: "AI Failure Tracker"
-categories: ["Large Language Models"]
-tags: ["google-bard", "factual-error", "hallucination", "public-demo"]
-draft: false
+incident_date: 2023-02-08
+ai_system: "Google Bard"
+vendor: "Google"
+severity: "high"
+mistake_type: "hallucination"
+tags: ["public-demo", "factual-error", "google-bard"]
+sources:
+  - title: "The Verge: Google's AI chatbot Bard makes factual error in first demo"
+    url: "https://www.theverge.com/2023/2/8/23590864/google-ai-chatbot-bard-mistake-error-exoplanet-demo"
+  - title: "ESO (2004): Is This Speck of Light an Exoplanet?"
+    url: "https://www.eso.org/public/news/eso0428/"
+  - title: "NASA: 2M1207 b, first image of an exoplanet"
+    url: "https://exoplanets.nasa.gov/resources/300/2m1207-b-first-image-of-an-exoplanet/"
+summary: "A confident, wrong answer in the launch ad itself. The first exoplanet image was taken in 2004, by ESO's Very Large Telescope."
 ---
 
-## What Happened
+## What happened
 
-During Google's public demonstration of Bard (its competitor to ChatGPT) on February 8, 2023, the chatbot was asked: "What new discoveries from the James Webb Space Telescope can I tell my 9-year-old about?"
+In the promotional demo for Bard, Google's answer to ChatGPT, the chatbot was asked: "What new discoveries from the James Webb Space Telescope can I tell my 9-year-old about?"
 
-Bard confidently responded that the James Webb Space Telescope had taken the **first pictures of exoplanets**.
+One of its three bullet points said JWST "took the very first pictures of a planet outside of our own solar system."
 
-**This is false.** The first pictures of exoplanets were actually taken by the **European Southern Observatory's Very Large Telescope in 2004** — nearly 20 years before JWST's launch.
+That is false. The first image of an exoplanet, 2M1207 b, was taken in 2004 by the European Southern Observatory's Very Large Telescope, almost two decades before JWST launched. Astronomers pointed this out on social media within hours.
 
-## The Fallout
+## Why it went wrong
 
-- Google's stock price dropped 2% following the public mishap
-- The error was widely covered by major media outlets
-- It undermined trust in Google's AI capabilities just as the company was trying to compete with OpenAI
-- The error showed up prominently in Google's official product demo video
+- **Confident hallucination**: the model produced a plausible-sounding "first" with nothing to back it, in the same authoritative tone as its correct claims.
+- **Superlatives are a trap**: "first", "only" and "largest" claims are exactly where training data is thin or contradictory, and where models most often overreach.
+- **No grounding**: the answer was not checked against a source before it went into a launch asset.
 
-## Why This Matters
+## Impact
 
-This failure illustrates several critical issues with large language models:
+- The error appeared in Google's official launch material and was widely reported.
+- Alphabet shares fell sharply the next day, a drop widely tied in coverage to the demo error.
+- It became the go-to example of LLM hallucination in early 2023 coverage.
 
-1. **Confident hallucination**: LLMs can generate false information while sounding completely authoritative and factual
-2. **Demonstration risk**: AI systems can fail catastrophically in high-stakes moments (like public product launches)
-3. **Training data limitations**: The model apparently had outdated or incomplete information about astronomical discoveries
-4. **No real understanding**: Despite sophisticated language, these models don't truly "understand" facts—they pattern-match probabilities
+## The lesson
 
-## How It Was Found
-
-During the official Google product announcement livestream on February 8, 2023. Fact-checkers and astronomers quickly identified the error within hours.
-
-## What We Learn
-
-1. **Never trust AI alone for factual claims** — especially in important contexts (education, healthcare, journalism, legal work)
-2. **Confident tone ≠ accuracy** — LLMs are equally confident whether they're right or wrong
-3. **Test before shipping** — Especially for public-facing AI products, comprehensive fact-checking is essential
-4. **Real-time correction matters** — Google could have caught this in testing; the public demo amplified the damage
-
-## Sources
-
-- Google's official Bard announcement livestream, February 8, 2023
-- News coverage: Reuters, Bloomberg, The Verge
-- NASA/ESO documentation on exoplanet imaging history
-- Academic papers on LLM hallucinations and factuality
-
----
-
-**Context**: This occurred less than 2 months after ChatGPT's viral launch, during intense competition between Google and OpenAI. The failure became a cautionary tale about rushing AI products to market without rigorous verification.
+1. **Fact-check every specific claim**, especially superlatives and dates, before AI output reaches users.
+2. **A confident tone is not evidence.** Models sound equally sure when they are right and when they are wrong.
+3. **Demos are production.** Anything shown publicly needs the same review as anything shipped.

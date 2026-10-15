@@ -13,7 +13,8 @@ hugo --minify       # production build into public/
 
 No theme or submodule is needed: the site's own templates live in `layouts/`, styles in
 `static/css/site.css` and the light/dark toggle in `static/js/theme.js`. Write for readers with no
-tech background: plain words, no jargon.
+tech background: simple, everyday words. No buzzwords (e.g. "hallucination", "LLM",
+"deepfake", "AI agent") and no jargon; describe what happened instead.
 
 ## Structure
 

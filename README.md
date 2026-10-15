@@ -31,7 +31,7 @@ layouts/
   partials/comments.html        discussion provider switch point
   partials/giscus.html          Giscus embed, opened in the current light/dark theme
 data/
-  labels.yaml                   plain-language names for mistake_type and severity
+  labels.yaml                   buzzword + simple explanation per mistake_type; severity names
 content/
   posts/                        one Markdown file per mistake
   weeks/_index.md               weekly archive page
@@ -54,7 +54,7 @@ incident_date: 2023-02-08
 ai_system: "Google Bard"
 vendor: "Google"
 severity: "high"              # low | medium | high | critical
-mistake_type: "hallucination" # hallucination | bias | safety | security | agent-action | other
+mistake_type: "hallucination" # hallucination | agent-action | deepfake | bias | privacy | security | safety | other
 tags: ["public-demo", "factual-error"]
 sources:
   - title: "The Verge: Google's AI chatbot Bard makes factual error in first demo"
@@ -64,9 +64,27 @@ summary: "One-line hook shown under the title."
 ```
 
 Body sections, in order: `## What happened`, `## Why it went wrong`, `## Impact`, `## The lesson`.
-The Sources list is rendered from `sources`; don't repeat it in the body. `mistake_type` and
-`severity` are shown using the readable names in `data/labels.yaml`. The feed shows the domain
+The Sources list is rendered from `sources`; don't repeat it in the body. `mistake_type` is shown
+as its buzzword (e.g. "AI Hallucination") with a simple explanation from `data/labels.yaml`, and
+links to the AI buzzwords page (`/buzzwords/`), which is built from the same file. The feed shows the domain
 of the first source next to the title.
+
+## Writing style
+
+Readers are curious people, not engineers. Every post (by hand or by the pipeline) should:
+
+- **Use the buzzwords people search for**: AI hallucination, AI agent, deepfake, prompt injection,
+  AI bias, chatbot, generative AI, LLM, and product names (ChatGPT, Gemini, Copilot, Claude, Grok).
+  Put the main buzzword in the title.
+- **Explain each buzzword the first time**, in a few simple words: "a large language model (LLM),
+  the technology behind chatbots".
+- **Use simple words and short sentences.** About 15 words per sentence; one idea each. Say "made
+  up", not "fabricated"; "checked", not "validated".
+- **No unexplained jargon**: no "grounding", "inference", "tokens" or "RAG" unless explained.
+- **Title**: buzzword + what happened, under about 90 characters.
+  Example: "Google Bard's AI hallucination: the launch demo that got space history wrong".
+- **Summary**: one or two plain sentences a non-technical friend would understand.
+- **Facts**: every claim backed by `sources`; no guessing at numbers.
 
 ## Comments
 

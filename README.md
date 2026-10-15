@@ -61,8 +61,14 @@ sources:
   - title: "The Verge: Google's AI chatbot Bard makes factual error in first demo"
     url: "https://www.theverge.com/..."
 summary: "One-line hook shown under the title."
+ai_said: "JWST took the very first pictures of a planet outside of our own solar system."  # optional
+actually: "The first such photo was taken in 2004, by a telescope in Chile."                # optional
 ---
 ```
+
+`ai_said` (what the AI claimed, quoted) and `actually` (what is true) are one short sentence each.
+The home page shows them in the "This week's catch" card for the newest post that has both; with
+neither set on any post, the card is not shown.
 
 Body sections, in order: `## What happened`, `## Why it went wrong`, `## Impact`, `## The lesson`.
 The Sources list is rendered from `sources`; don't repeat it in the body. `mistake_type` and

@@ -3,18 +3,29 @@
     <h1>When AI gets it wrong, we catch it.</h1>
     <p>{{ site.Params.description }}</p>
 
-    <div class="chat" aria-label="Example of an AI mistake">
-        <div class="bubble user"><small>You</small>What's the capital of Australia?</div>
-        <div class="bubble ai"><small>AI</small>Sydney, obviously. Population 5.3 million, founded 1788.</div>
-        <div class="bubble user"><small>You</small>That's wrong. It's Canberra.</div>
-        <div class="bubble ai-good"><small>AI</small>Good catch. You're right, it's Canberra.</div>
-    </div>
+    {{- $posts := where site.RegularPages "Section" "posts" }}
+    {{- /* Newest post that says what the AI claimed and what is true. No such post: no card. */ -}}
+    {{- with index (where (where $posts.ByDate.Reverse "Params.ai_said" "!=" nil) "Params.actually" "!=" nil) 0 }}
+    <article class="catch-card" aria-labelledby="catch-label">
+        <p class="catch-label" id="catch-label">This week's catch</p>
+        <dl>
+            <div class="catch-row said"><dt>The AI said</dt><dd>"{{ .Params.ai_said }}"</dd></div>
+            <div class="catch-row actually"><dt>Actually</dt><dd>{{ .Params.actually }}</dd></div>
+        </dl>
+        <div class="catch-foot">
+            <span class="meta">
+                {{- with .Params.ai_system }}{{ . }}{{ end }}
+                {{- with .Params.incident_date }}<span class="sep"></span>{{ time.Format "2 Jan 2006" . }}{{ end -}}
+            </span>
+            <a class="catch-link" href="{{ .RelPermalink }}">Read the story →</a>
+        </div>
+    </article>
+    {{- end }}
 </section>
 
 <section class="section">
     <h2 class="section-title">Latest mistakes</h2>
     <p class="section-intro">Real cases, explained in plain words. Pick one and tell us what you think.</p>
-    {{- $posts := where site.RegularPages "Section" "posts" }}
     <ol class="feed">
         {{- range first 30 $posts.ByDate.Reverse }}
         {{ partial "post-row.html" . }}

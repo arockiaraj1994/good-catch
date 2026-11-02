@@ -81,7 +81,10 @@ cleanup() {
         git -C "$REPO" worktree remove --force "$WT" 2>/dev/null || true
         git -C "$REPO" branch -D "$BRANCH" >/dev/null 2>&1 || true
     fi
-    [[ -n $WORK ]] && rm -rf "$WORK"
+    # An "if", not "&&": a false test as the trap's last command would make the script exit 1.
+    if [[ -n $WORK ]]; then
+        rm -rf "$WORK"
+    fi
 }
 trap cleanup EXIT
 
